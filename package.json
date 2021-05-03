@@ -5,8 +5,20 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "test": "npm run build && npm run test:specs",
+    "format": "prettier --write '{source,test}/**/*.{js,ts}'",
+    "test": "npm run build && npm run test:specs && npm run test:format",
+    "test:format": "prettier --check '{source,test}/**/*.{js,ts}'",
     "test:specs": "nyc mocha -r test/index.js 'test/specs/**/*.spec.js'"
+  },
+  "lint-staged": {
+    "{source,test}/**/*.{js,ts}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "repository": {
     "type": "git",
@@ -28,8 +40,11 @@
   "homepage": "https://github.com/perry-mitchell/date-matrix#readme",
   "devDependencies": {
     "chai": "^4.3.4",
+    "husky": "^4.3.8",
+    "lint-staged": "^10.5.4",
     "mocha": "^8.3.2",
     "nyc": "^15.1.0",
+    "prettier": "^1.19.1",
     "sinon": "^10.0.0",
     "typescript": "^4.2.4"
   }

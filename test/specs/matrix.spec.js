@@ -10,36 +10,24 @@ describe("createDateMatrix", function() {
 
     it("returns the correct structure", function() {
         const dm = createDateMatrix(new Date(TARGET_DATE));
-        expect(dm).to.have.property("weekdays").that.is.an("array");
-        expect(dm).to.have.property("weeks").that.is.an("array");
+        expect(dm)
+            .to.have.property("weekdays")
+            .that.is.an("array");
+        expect(dm)
+            .to.have.property("weeks")
+            .that.is.an("array");
     });
 
     it("returns correct weekdays", function() {
         const dm = createDateMatrix(new Date(TARGET_DATE));
-        expect(dm.weekdays).to.deep.equal([
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thu",
-            "Fri",
-            "Sat",
-            "Sun"
-        ]);
+        expect(dm.weekdays).to.deep.equal(["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]);
     });
 
     it("returns correct weekdays (fi_FI locale)", function() {
         const dm = createDateMatrix(new Date(TARGET_DATE), {
             locale: "fi-FI"
         });
-        expect(dm.weekdays).to.deep.equal([
-            "ma",
-            "ti",
-            "ke",
-            "to",
-            "pe",
-            "la",
-            "su"
-        ]);
+        expect(dm.weekdays).to.deep.equal(["ma", "ti", "ke", "to", "pe", "la", "su"]);
     });
 
     it("returns correct weekdays (long format)", function() {
@@ -72,8 +60,12 @@ describe("createDateMatrix", function() {
 
     it("returns correct matrix day date", function() {
         const dm = createDateMatrix(new Date(TARGET_DATE));
-        expect(dm.weeks[0][1]).to.have.property("date").that.satisfies(d => d.toDateString() === "Tue Mar 30 2021");
-        expect(dm.weeks[1][0]).to.have.property("date").that.satisfies(d => d.toDateString() === "Mon Apr 05 2021");
+        expect(dm.weeks[0][1])
+            .to.have.property("date")
+            .that.satisfies(d => d.toDateString() === "Tue Mar 30 2021");
+        expect(dm.weeks[1][0])
+            .to.have.property("date")
+            .that.satisfies(d => d.toDateString() === "Mon Apr 05 2021");
     });
 
     it("returns correct matrix day type", function() {
@@ -88,15 +80,7 @@ describe("createDateMatrix", function() {
             const dm = createDateMatrix(new Date(TARGET_DATE), {
                 firstDay: "sunday"
             });
-            expect(dm.weekdays).to.deep.equal([
-                "Sun",
-                "Mon",
-                "Tue",
-                "Wed",
-                "Thu",
-                "Fri",
-                "Sat"
-            ]);
+            expect(dm.weekdays).to.deep.equal(["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]);
         });
 
         it("returns correct matrix days", function() {
