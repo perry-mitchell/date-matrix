@@ -15,14 +15,14 @@ export function createDateMatrix(targetDate: Date, options: DateMatrixOptions = 
     const weekdays = getWeekdayNames(firstMonday, locale);
     const rows = [];
     let currentRow: Array<CalendarDay> = [],
-        currentDate = new Date(firstMonday),
+        currentDate = dateFromDate(firstMonday),
         type: CalendarMonthType = currentDate.getMonth() === targetDate.getMonth() ? "current" : "previous",
         lastRow = false;
     while (true) {
         // Push day item to row
         currentRow.push({
             day: currentDate.getDate(),
-            date: new Date(currentDate),
+            date: dateFromDate(currentDate),
             type
         });
         // Handle row
@@ -52,22 +52,27 @@ export function createDateMatrix(targetDate: Date, options: DateMatrixOptions = 
     };
 }
 
+function dateFromDate(date: Date): Date {
+    return new Date(date.getTime());
+}
+
 function getFirstOfMonth(date: Date): Date {
-    const newDate = new Date(date);
+    const newDate = dateFromDate(date);
     newDate.setDate(1);
     return newDate;
 }
 
 function getFirstWeekday(date: Date, firstDayMonday: boolean): Date {
     const [offsetA, offsetB] = firstDayMonday ? [-6, 1] : [-7, 0];
-    const newDate = new Date(date);
+    const newDate = dateFromDate(date);
     const day = newDate.getDay();
     const diff = newDate.getDate() - day + (day === 0 ? offsetA : offsetB);
-    return new Date(newDate.setDate(diff));
+    newDate.setDate(diff)
+    return newDate;
 }
 
 function getWeekdayNames(date: Date, locale: string): Array<string> {
-    const currentDate = new Date(date);
+    const currentDate = dateFromDate(date);
     const weekdays: Array<string> = [];
     for (let i = 0; i < 7; i += 1) {
         weekdays.push(currentDate.toLocaleString(

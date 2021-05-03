@@ -4,6 +4,7 @@
   "description": "Calendar date matrix generator",
   "main": "dist/index.js",
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/perry-mitchell/date-matrix/issues"
   },
-  "homepage": "https://github.com/perry-mitchell/date-matrix#readme"
+  "homepage": "https://github.com/perry-mitchell/date-matrix#readme",
+  "devDependencies": {
+    "typescript": "^4.2.4"
+  }
 }
