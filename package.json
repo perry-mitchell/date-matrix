@@ -1,0 +1,27 @@
+{
+  "name": "date-matrix",
+  "version": "0.0.0",
+  "description": "Calendar date matrix generator",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/perry-mitchell/date-matrix.git"
+  },
+  "keywords": [
+    "date",
+    "matrix",
+    "calendar",
+    "dates",
+    "grid",
+    "month"
+  ],
+  "author": "Perry Mitchell <perry@perrymitchell.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/perry-mitchell/date-matrix/issues"
+  },
+  "homepage": "https://github.com/perry-mitchell/date-matrix#readme"
+}
