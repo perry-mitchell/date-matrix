@@ -1,15 +1,19 @@
 {
   "name": "date-matrix",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Calendar date matrix generator",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "format": "prettier --write '{source,test}/**/*.{js,ts}'",
+    "prepublishOnly": "npm run build",
     "test": "npm run build && npm run test:specs && npm run test:format",
     "test:format": "prettier --check '{source,test}/**/*.{js,ts}'",
     "test:specs": "nyc mocha -r test/index.js 'test/specs/**/*.spec.js'"
   },
+  "files": [
+    "dist/**/*"
+  ],
   "lint-staged": {
     "{source,test}/**/*.{js,ts}": [
       "prettier --write"
