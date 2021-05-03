@@ -1,6 +1,8 @@
 # Date Matrix
 > Calendar date matrix generator
 
+[![NPM version](https://img.shields.io/npm/v/date-matrix?color=green)](https://www.npmjs.com/package/date-matrix)
+
 Date matrix generator for NodeJS / browsers, written in Typescript.
 
 This can be used to generate grids of days, representing a calendar month, by passing in any `Date` in the desired month.
