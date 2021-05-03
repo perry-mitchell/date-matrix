@@ -8,12 +8,13 @@ import {
 export function createDateMatrix(targetDate: Date, options: DateMatrixOptions = {}): DateMatrix {
     const {
         firstDay = "monday",
-        locale
+        locale,
+        weekdayFormat = "short"
     } = options;
     const firstDayOfMonth = getFirstOfMonth(targetDate);
     const firstMonday = getFirstWeekday(firstDayOfMonth, firstDay === "monday");
-    const weekdays = getWeekdayNames(firstMonday, locale);
-    const rows = [];
+    const weekdays = getWeekdayNames(firstMonday, locale, weekdayFormat);
+    const weeks = [];
     let currentRow: Array<CalendarDay> = [],
         currentDate = dateFromDate(firstMonday),
         type: CalendarMonthType = currentDate.getMonth() === targetDate.getMonth() ? "current" : "previous",
@@ -27,7 +28,7 @@ export function createDateMatrix(targetDate: Date, options: DateMatrixOptions = 
         });
         // Handle row
         if (currentRow.length >= 7) {
-            rows.push(currentRow);
+            weeks.push(currentRow);
             currentRow = [];
             if (lastRow) break;
         }
@@ -48,7 +49,7 @@ export function createDateMatrix(targetDate: Date, options: DateMatrixOptions = 
     }
     return {
         weekdays,
-        rows
+        weeks
     };
 }
 
@@ -71,14 +72,14 @@ function getFirstWeekday(date: Date, firstDayMonday: boolean): Date {
     return newDate;
 }
 
-function getWeekdayNames(date: Date, locale: string): Array<string> {
+function getWeekdayNames(date: Date, locale: string, format: "short" | "long"): Array<string> {
     const currentDate = dateFromDate(date);
     const weekdays: Array<string> = [];
     for (let i = 0; i < 7; i += 1) {
         weekdays.push(currentDate.toLocaleString(
             locale,
-            { weekday: "short" }
-        ).substring(0, 1));
+            { weekday: format }
+        ));
         currentDate.setDate(currentDate.getDate() + 1);
     }
     return weekdays;

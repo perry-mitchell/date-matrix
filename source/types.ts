@@ -8,10 +8,11 @@ export type CalendarMonthType = "previous" | "current" | "next";
 
 export interface DateMatrix {
     weekdays: Array<string>;
-    rows: Array<Array<CalendarDay>>;
+    weeks: Array<Array<CalendarDay>>;
 }
 
 export interface DateMatrixOptions {
     firstDay?: "monday" | "sunday";
     locale?: string;
+    weekdayFormat?: "short" | "long";
 }
